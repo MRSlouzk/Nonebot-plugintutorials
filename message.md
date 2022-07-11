@@ -267,3 +267,75 @@ async def _(event:GroupMessageEvent):
 
 ------
 
+最后我们要解决的问题是：<u>如何@回去</u>，在此之前我们需要了解一下Onebot的消息类型。上面我们曾提到`word.finish()`方法可以传入四种参数：**字符串(Str)/消息(Message)/格式化消息模板(MessageTemplate)/消息段(MessageSegment)**，其中[格式化消息模板](https://v2.nonebot.dev/docs/api/adapters/index#MessageTemplate)用法比较特殊，暂且避开不谈，只讲剩下三种。
+
+字符串(Str)与消息(Message)大部分情况下可以等价，可以替代Message使用，但是有一种特殊情况：消息内包含CQ码的时候只能使用Message。
+
+##### 什么是CQ码？
+
+[CQ码](https://docs.go-cqhttp.org/cqcode/#%E8%BD%AC%E4%B9%89)是go-cqhttp协议中的一种特殊的标识符，用以发送特殊消息(如图片、语音、@等等)，常见的CQ码格式为`[CQ:类型,参数=值,参数=值]`，如下面的例子就是CQ码的一种使用
+
+```python
+@word.handle()
+async def _():
+    await word.finish(Message("[CQ:share,url=https://www.baidu.com,title=百度]"))
+```
+
+上述代码发送了一个百度的链接(不是以文字链接的方式)，而是一个可以点击的类似“小程序”的执行框，点击后可以直接跳转。
+
+这里我列举了一些常见的CQ码，全部的CQ码请查阅[go-cqhttp文档](https://docs.go-cqhttp.org/cqcode/#%E8%BD%AC%E4%B9%89)或者[OneBot文档](https://github.com/botuniverse/onebot-11/blob/master/message/segment.md)。
+
+| 类型   | 参数                                                         | 作用                              |
+| ------ | ------------------------------------------------------------ | --------------------------------- |
+| face   | id=表情ID                                                    | 发送QQ内的表情                    |
+| record | file=文件路径/URL                                            | 发送语音(一般为mp3格式)           |
+| at     | qq=QQ号，(name=昵称)                                         | @某人(不在群里时可以使用name参数) |
+| share  | url=网站链接，name=网站名                                    | 发送网站分享                      |
+| music  | type=歌曲平台，id=歌曲ID                                     | 发送音乐                          |
+| image  | 参数较多，参见[文档](https://docs.go-cqhttp.org/cqcode/#%E5%9B%BE%E7%89%87) | 发送图片                          |
+| reply  | id=回复的消息ID，text=消息内容                               | 发送回复消息                      |
+
+------
+
+回到刚刚的代码，`word.finish(Message("[CQ:share,url=https://www.baidu.com,title=百度]"))`是正确的用法，但如果使用的是`word.finish("[CQ:share,url=https://www.baidu.com,title=百度]")`，虽然不会报错，但是go-cqhttp无法识别到CQ码，这样子输出的内容直接就是CQ码本身的文本内容，这点显然不是我们想要的。
+
+不过CQ码不是唯一实现发送特殊消息的方式，除了CQ码之外还有一种叫**消息段(MessageSegment)**的东西，可以实现与CQ码相同的功能，并且还可以实现一些CQ码无法实现的功能，用法如下
+
+```python
+@word.handle()
+async def _():
+    await word.finish(MessageSegment.share(url="https://www.baidu.com",title="百度"))
+```
+
+这段代码与上面的`[CQ:share,url=https://www.baidu.com,title=百度]`功能是一致的，但是使用MessageSegment方式发送特殊消息更加方便明了(还不用去查文档，打出来IDE就会给语法提示)，减轻了编写与后期维护的压力。
+
+现在相信大家已经能解决我们的最后一个问题：<u>如何@回去</u>。示例代码如下，分别使用了CQ码和消息段形式
+
+**CQ码**
+
+```python
+from nonebot import on_keyword
+from nonebot.adapters.onebot.v11 import Message,GroupMessageEvent
+from nonebot.rule import to_me
+
+word=on_keyword({"你是谁"},rule=to_me())
+
+@word.handle()
+async def _(event: GroupMessageEvent):
+    await word.finish(Message(f"[CQ:at,qq={event.user_id}],你@我了!"))
+```
+
+**消息段**
+
+```python
+from nonebot import on_keyword
+from nonebot.adapters.onebot.v11 import Message,GroupMessageEvent,MessageSegment
+from nonebot.rule import to_me
+
+word=on_keyword({"你是谁"},rule=to_me())
+
+@word.handle()
+async def _(event: GroupMessageEvent):
+    await word.finish(MessageSegment.at(event.user_id))
+```
+
