@@ -50,10 +50,10 @@ async def _(event: PokeNotifyEvent):
 ##### 发送图片
 
 ```python
-await poke.finish(MessageSegment.record(file=r"file:///E:\Code\plugins\poke\resources\1.png"))
+await poke.finish(MessageSegment.image(file=r"file:///E:\Code\plugins\poke\resources\1.png"))
 ```
 
-发送图片调用的是消息段(MessageSegment)类中的`record`方法，直接读取对应路径下的文件，然后发送出去，MessageSegment支持发送的消息类型详见[Onebot文档](https://github.com/botuniverse/onebot-11/blob/master/message/segment.md)。
+发送图片调用的是消息段(MessageSegment)类中的`image`方法，直接读取对应路径下的文件，然后发送出去，MessageSegment支持发送的消息类型详见[Onebot文档](https://github.com/botuniverse/onebot-11/blob/master/message/segment.md)。
 
 #### 完整代码
 
@@ -69,7 +69,7 @@ poke=on_notice(rule=_check)
 @poke.handle()
 async def _(event: PokeNotifyEvent):
     if(event.user_id in agree_list):
-        await poke.finish(MessageSegment.record(file=r"file:///E:\Code\plugins\poke\resources\1.png"))
+        await poke.finish(MessageSegment.image(file=r"file:///E:\Code\plugins\poke\resources\1.png"))
     else:
         await poke.finish(Message(f"[CQ:at,qq={event.user_id}]不要再戳了!"))
 ```
