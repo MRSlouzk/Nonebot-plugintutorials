@@ -59,7 +59,7 @@ await poke.finish(MessageSegment.record(file=r"file:///E:\Code\plugins\poke\reso
 
 ```python
 from nonebot import on_notice
-from nonebot.adapters.onebot.v11 import PokeNotifyEvent
+from nonebot.adapters.onebot.v11 import PokeNotifyEvent, Message
 
 def _check(event: PokeNotifyEvent):
     return event.user_id==event.self_id
