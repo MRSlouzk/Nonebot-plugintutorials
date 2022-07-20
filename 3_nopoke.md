@@ -23,7 +23,7 @@ from nonebot import on_notice
 from nonebot.adapters.onebot.v11 import PokeNotifyEvent
 
 def _check(event: PokeNotifyEvent):
-    return event.user_id==event.self_id
+    return event.target_id == event.self_id
 
 poke=on_notice(rule=_check)
 
