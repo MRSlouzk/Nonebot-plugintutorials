@@ -32,21 +32,21 @@ from nonebot import on_keyword
 from nonebot.adapters.onebot.v11 import Message
 ```
 
-这段经典的Import代码的意思就是从nonebot库中引入`on_keyword`方法，再从Onebot V11库中引入`Message`方法。这两个方法具体用法我们之后再谈，接下来先聊聊这个import。
+这段经典的Import代码的功能是从nonebot库中引入`on_keyword`方法，再从Onebot V11库中引入`Message`方法。不过这两个方法具体用法我们之后再谈，接下来先聊聊这个import。
 
-Nonebot2中的很多功能都需要通过import导入后才能使用，虽然你也可以通过无脑`from nonebot import *`来一劳永逸，但不保证这样会不会出一些奇奇怪怪的问题，所以我的建议是需要什么方法就导入什么。**那么我怎么知道从哪些库里引入我想要的函数呢？**这里我列举了一些常见库里包含的常见函数，可以供大家参考
+Nonebot2中的很多功能都需要通过import导入后才能使用，虽然你也可以通过无脑`from nonebot import *`这种办法来一劳永逸，但不保证这样会不会出一些奇奇怪怪的问题，所以我的建议是需要什么方法就导入什么。**那么我怎么知道从哪些库里引入我想要的函数呢？**这里我列举了一些常见库里包含的常见函数，可以供大家参考
 
 | 库                          | 常用函数/方法                                                | 说明       |
 | --------------------------- | ------------------------------------------------------------ | ---------- |
 | nonebot                     | on_message，on_notice，on_request，on_keyword，on_command，on_regex | 基础库     |
 | nonebot.config              | Config                                                       | 配置文件库 |
-| nonebot.matcher             | Match                                                        | 时间响应器 |
+| nonebot.matcher             | Match                                                        | 事件响应器 |
 | nonebot.params              | Arg，State，CommandArg，RegexMatched                         | 参数库     |
 | nonebot.permission          | SUPERUSER，Permission                                        | 权限库     |
 | nonebot.log                 | logger，default_format                                       | 日志库     |
 | nonebot.adapters.onebot.v11 | Bot，Message，MessageSegment，Event，PRIVATE，GROUP等        | Onebot库   |
 
-(注：OneBot V11的库可以通过`nonebot.adapters.onebot.v11`直接导入，也可以用诸如`nonebot.adapters.onebot.v11.message`等对应方式导入，详见[官方文档](https://onebot.adapters.nonebot.dev/docs/api/v11))
+(注：OneBot V11的库可以从`nonebot.adapters.onebot.v11`直接导入，也可以用诸如`nonebot.adapters.onebot.v11.message`的方式导入，详见[官方文档](https://onebot.adapters.nonebot.dev/docs/api/v11))
 
 ------
 
@@ -58,7 +58,7 @@ word=on_keyword({"你是谁"})
 
 首先是“注册”，注册其实类似于C语言里面的函数声明，函数必须在声明后才可以使用，事件响应器（具体是什么不急着谈）也是如此。简单来说你想建个房子，但你建房子之前必须要指定一块地说我要在这里建房子才行，而不能直接就建房子，响应器注册就是指定一个变量（土地）来建房子（响应器）。并且这里面的“word”也是类似于“函数的名字”一样的存在，所以可以在符合Python变量命名法的前提下随便取名，这个变量在之后使用事件响应器时会用到。
 
-之后是`on_keyword`，前面说过on_keyword是NoneBot库中的一个方法，至于方法这个词具体是什么意思请去看《面向对象编程》。在这你可以简单理解成一个函数就行，这个函数会返回一个事件响应器，那它有什么参数呢？先来看看文档中的说明：
+之后是`on_keyword`，前面说过on_keyword是NoneBot库中的一个方法，至于**方法**这个词具体是什么意思请去看《面向对象编程》。在这你可以简单理解成一个函数就行，这个函数会返回一个事件响应器，那它能输入什么参数呢？先来看看文档中的说明：
 
 `on_keyword(keywords, rule=..., *, permission=..., handlers=..., temp=..., priority=..., block=..., state=...)`     *<u>注册一个消息事件响应器，并且当消息纯文本部分包含关键词时响应</u>*
 
@@ -112,7 +112,7 @@ async def _():
 
 接下来最后这一段代码其实是响应器最核心的一部分，响应器触发后就会执行这段代码的内容，没有这部分事件响应器也只是单纯的一个空壳。
 
-`@word.handle()`，这个是函数的"[装饰器](https://v2.nonebot.dev/docs/tutorial/plugin/create-handler)"，说白了就是给下面的函数标明：<u>这个函数就是用来处理事件响应器的！</u>，当然这个装饰器的更具体的用法目前不用了解，只需要知道必须在处理响应器的函数前加上这个就行，格式为`@响应器名.handle()`。
+`@word.handle()`，这个是函数的"[装饰器](https://v2.nonebot.dev/docs/tutorial/plugin/create-handler)"，说白了就是给下面的函数标明：<u>这个函数就是用来处理事件响应器的！</u>，当然这个装饰器更具体的用法目前不用了解，只需要知道必须在处理响应器的函数前加上这个就行，格式为`@响应器名.handle()`。
 
 接下面的`async def`意思是定义一个[异步(协程)函数](https://www.jianshu.com/p/0957c30e85bf)，Nonebot的事件响应器处理的主函数都一般情况下应当都是异步函数，而子函数(主函数中包含的函数)视情况而定。`async def _()`即定义一个没有任何参数，也没有函数名字的异步函数。一般情况下事件响应器主函数都不需要用到名字，使用`_`代替就行，不过如果为了辨识度高一点的话而命名那随意，之后也会有需要用到函数名字的地方。此外这还是个无参函数，异步函数(事件响应器)的参数传递我们之后再谈，这里的例子只是一个简单的消息触发与回复，所以并不需要传入任何参数。
 
