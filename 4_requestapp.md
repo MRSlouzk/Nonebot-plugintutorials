@@ -32,3 +32,77 @@ request=on_request(rule=_check)
 
 ##### 获取验证信息
 
+获取验证信息是通过解析`GroupRequestEvent`当中的数据获取的，首先通过下段代码获取请求中的信息
+
+```python
+async def _(bot: Bot,event: GroupRequestEvent):
+    if(str(event.group_id) in request_config.group_to_use):
+        raw = json.loads(event.json())
+```
+
+可以看到，raw即是通过`event.json`获取到的json数据转化成的变量，类型为字典(Dict)。里面包含很多字段，包括但不仅限于时间(time)、收到消息的bot的qq(self_id)、群号(group_id)、请求子类型(sub_type)等，具体见[文档](https://github.com/botuniverse/onebot-11/blob/master/event/request.md)。而我们所需要的验证信息就是其中的"comment字段"，可以通过`comment = raw['comment']`提取出来。**特别注意！！！验证消息提取出来后并不单纯是申请人填入文字框中的信息**，而是<u>"问题：XXX 答案：YYY"</u>的形式，其中YYY才是我们真正想要的内容。可以通过`word = re.findall(re.compile('答案：(.*)'), comment)[0]`来提取(正则表达式yyds)，至此我们就拿到了验证信息。
+
+而要验证验证信息是否正确也很简单，原理跟第一个实例很像，直接检测列表中是否有这个字符串(验证信息)就行，即使用`in`方法。
+
+##### 同意加群申请
+
+同意加群申请调用的是Onebot中Bot类提供的一个方法(API)，名为`set_group_add_request`，这个方法有以下参数
+
+`flag`，类型为字符串，相当于网络请求中的`token`令牌，每一个加群请求都对应唯一一个flag值。还不懂的话就记住这东西就相当于事件的身份证就行，处理事件时必须要用到它，它是QQ直接提供的。
+
+`sub_type`，事件子类型，有"add"和"invite"两种，分别对应"主动加群"和"邀请加群"。该参数必须与请求当中的sub_type相同，不然那无法执行方法。
+
+`apprpve`，是否同意加群申请，默认为True，即同意加群，False为不同意。
+
+`reason`，拒绝加群的理由。
+
+代码实现
+
+```python
+bot.set_group_add_request(
+                    flag=flag,
+                    sub_type=sub_type,
+                    approve=True,
+                    reason=" ",
+                )
+```
+
+------
+
+最后来看一下完整代码
+
+```python
+from nonebot import on_request
+from nonebot.log import logger
+from nonebot.adapters.onebot.v11 import Bot, GroupRequestEvent
+import re
+import json
+
+notice=on_request(priority=1)
+
+approve_message_1=[""] //填入想要的字符串列表
+
+@notice.handle()
+async def _(bot: Bot,event: GroupRequestEvent):
+    if(str(event.group_id) in request_config.group_to_use):
+        raw = json.loads(event.json())
+        gid = str(event.group_id)
+        flag = raw['flag']
+        sub_type = raw['sub_type']
+        if sub_type == 'add':
+            comment = raw['comment']
+            word = re.findall(re.compile('答案：(.*)'), comment)[0]
+            uid = event.user_id
+            if(str(word) in approve_message_1):
+                logger.info(f'同意{uid}加入群 {gid},验证消息为 “{word}”')
+                await bot.set_group_add_request(
+                    flag=flag,
+                    sub_type=sub_type,
+                    approve=True,
+                    reason=" ",
+                )
+            else:
+                await notice_1.finish("有人要加群!但答案不对呀!")
+    await notice_1.finish()
+```
+
