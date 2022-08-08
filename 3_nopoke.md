@@ -59,10 +59,12 @@ await poke.finish(MessageSegment.image(file=r"file:///E:\Code\plugins\poke\resou
 
 ```python
 from nonebot import on_notice
-from nonebot.adapters.onebot.v11 import PokeNotifyEvent, Message
+from nonebot.adapters.onebot.v11 import PokeNotifyEvent, Message, MessageSegment
 
 def _check(event: PokeNotifyEvent):
-    return event.user_id==event.self_id
+    return event.target_id==event.self_id
+
+agree_list=[3237231778]
 
 poke=on_notice(rule=_check)
 

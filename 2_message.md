@@ -276,12 +276,13 @@ async def _(event:GroupMessageEvent):
 [CQ码](https://docs.go-cqhttp.org/cqcode/#%E8%BD%AC%E4%B9%89)是go-cqhttp协议中的一种特殊的标识符，用以发送特殊消息(如图片、语音、@等等)，常见的CQ码格式为`[CQ:类型,参数=值,参数=值]`，如下面的例子就是CQ码的一种使用
 
 ```python
+//因为QQ接口的问题，此CQ码现在无法使用，会报错"消息可能被风控"，可以尝试其他的CQ码。
 @word.handle()
 async def _():
     await word.finish(Message("[CQ:share,url=https://www.baidu.com,title=百度]"))
 ```
 
-上述代码发送了一个百度的链接(不是以文字链接的方式)，而是一个可以点击的类似“小程序”的执行框，点击后可以直接跳转。
+上述代码发送了一个百度的链接(不是以文字链接的方式)，而是一个可以点击的类似“小程序”的执行框，点击后可以直接跳转。**(因为QQ接口的问题，此CQ码现在无法使用，会报错"<u>消息可能被风控</u>"，可以尝试其他的CQ码。)**
 
 这里我列举了一些常见的CQ码，全部的CQ码请查阅[go-cqhttp文档](https://docs.go-cqhttp.org/cqcode/#%E8%BD%AC%E4%B9%89)或者[OneBot文档](https://github.com/botuniverse/onebot-11/blob/master/message/segment.md)。
 
@@ -299,7 +300,7 @@ async def _():
 
 回到刚刚的代码，`word.finish(Message("[CQ:share,url=https://www.baidu.com,title=百度]"))`是正确的用法，但如果使用的是`word.finish("[CQ:share,url=https://www.baidu.com,title=百度]")`，虽然不会报错，但是go-cqhttp无法识别到CQ码，这样子输出的内容直接就是CQ码本身的文本内容，这点显然不是我们想要的。
 
-不过CQ码不是唯一实现发送特殊消息的方式，除了CQ码之外还有一种叫**消息段(MessageSegment)**的东西，可以实现与CQ码相同的功能，并且还可以实现一些CQ码无法实现的功能，用法如下
+不过CQ码不是唯一实现发送特殊消息的方式，除了CQ码之外还有一种叫**消息段(MessageSegment)**的东西，可以实现与CQ码相同的功能，并且还可以实现一些CQ码无法实现的功能，**<u>官方推荐使用消息段来替代CQ码</u>**，后续案例也都会使用CQ码。用法如下
 
 ```python
 @word.handle()
@@ -325,7 +326,7 @@ async def _(event: GroupMessageEvent):
     await word.finish(Message(f"[CQ:at,qq={event.user_id}],你@我了!"))
 ```
 
-**消息段**
+**消息段(推荐!!!)**
 
 ```python
 from nonebot import on_keyword
