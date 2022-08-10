@@ -204,3 +204,58 @@ async def msg_handle(event: GroupMessageEvent):
     msg.finish(MessageSegment.reply(event.message_id) + msg_list[num])
 # 消息处理 #
 ```
+
+### **瞎写**改进版
+
+<details>
+
+实现了修改配置会实时更新，但是抛弃了原版 `rule` ，写在了消息处理里；
+
+或许我真的想的会是乱七八糟的吧……
+
+```python
+from nonebot import on_message
+from nonebot.adapters.onebot.v11.event import GroupMessageEvent
+from nonebot.adapters.onebot.v11.message import MessageSegment
+from nonebot.log import logger
+from random import randint
+from yaml import Loader, load, dump
+from os import path
+
+# 插件内部配置 #
+config_name = "reply_config.yaml"
+default_config = {"qq_list": ["123456789", "987654321"], "msg_list": ["你好呀~", "你好!", "贴贴!"]}
+# 插件内部配置 #
+
+# 创造新配置文件 #
+if path.exists(config_name) == False:
+    with open(config_name, "w", encoding="utf-8") as f:
+        f.write(dump(default_config, allow_unicode=True))
+        f.close()
+# 创造新配置文件 #
+
+# 读取配置 #
+def read_config():
+    with open(config_name, "r", encoding="utf-8") as f:
+        config = load(f.read(), Loader=Loader)
+        f.close()
+    return config
+# 读取配置 #
+
+# 消息处理 #
+msg = on_message()
+@msg.handle()
+async def msg_handle(event: GroupMessageEvent):
+    # 读取配置 #
+    config = read_config()
+    qq_list = config["qq_list"]
+    msg_list = config["msg_list"]
+    # 读取配置 #
+    if event.user_id in qq_list:
+        count = len(msg_list)
+        num = randint(0,count-1)
+        msg.finish(MessageSegment.reply(event.message_id) + msg_list[num])
+# 消息处理 #
+```
+
+</details>
