@@ -15,6 +15,7 @@
 ### 实现
 
 - 获取图片部分，使用requests库和json库获取请求后的数据，并用json库获取返回的json中的链接
+- 都需要requests,json,os,PIL的Image,glob,datetime,re库
 
 ```
 async def save_img():
