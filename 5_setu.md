@@ -16,7 +16,8 @@
 
 - 获取图片部分，使用requests库和json库获取请求后的数据，并用json库获取返回的json中的链接
 
-```async def save_img():
+```
+async def save_img():
     href = "https://api.lolicon.app/setu/v2"
     req1 = requests.post(href)
     str_json = req1.text
@@ -25,7 +26,8 @@
 ```
 - 压缩图片部分，使用PIL库和glob库
 
-```DIR = r"你自己的绝对路径！"
+```
+DIR = r"你自己的绝对路径！"
 
 class Compress_Picture(object):
     def __init__(self):
@@ -51,12 +53,15 @@ class Compress_Picture(object):
             f2 = f1[-1].split('.')
             f2 = '%s%s1%s' % (comdic, f2[0], self.file)
             dImg.save(f2)  # save这个函数后面可以加压缩编码选项JPEG之类的
+            
 ```
+
 - 使用datetime库进行CD的判断
 - 这里使用nonebot的on_command
 - 用re获取这个命令的QQ用户ID
 
-```CD = {}
+```
+CD = {}
 
 setu = on_command("随机涩图", priority=1)
 
@@ -92,4 +97,5 @@ async def out(bot: Bot, event: Event):
         yasuo = Compress_Picture()
         await yasuo.compressImage()
         await setu.finish(MessageSegment.at(id)+MessageSegment.text("你的涩图来咯，接下来会有30秒CD哦，爱你哟~")+MessageSegment.image(r"file:///自己的绝对路径"))
+
 ```
