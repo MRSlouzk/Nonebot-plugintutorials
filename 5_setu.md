@@ -17,7 +17,7 @@
 - 获取图片部分，使用requests库和json库获取请求后的数据，并用json库获取返回的json中的链接
 - 都需要requests,json,os,PIL的Image,glob,datetime,re库
 
-```
+```python
 async def save_img():
     href = "https://api.lolicon.app/setu/v2"
     req1 = requests.post(href)
@@ -27,7 +27,7 @@ async def save_img():
 ```
 - 压缩图片部分，使用PIL库和glob库
 
-```
+```python
 DIR = r"你自己的绝对路径！"
 
 class Compress_Picture(object):
@@ -61,7 +61,7 @@ class Compress_Picture(object):
 - 这里使用nonebot的on_command
 - 用re获取这个命令的QQ用户ID
 
-```
+```python
 CD = {}
 
 setu = on_command("随机涩图", priority=1)
