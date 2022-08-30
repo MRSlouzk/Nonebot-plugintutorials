@@ -32,7 +32,7 @@ async def _(event: PokeNotifyEvent):
     pass
 ```
 
-检测“戳一戳”事件调用的是Nonebot中的[on_notice](https://v2.nonebot.dev/docs/api/plugin/on#on_notice)(通知事件)。当bot接收到一个`notice`事件时，会先根据`rule`参数当中的规则函数`_check`判断是否为戳一戳事件*(注：因为规则函数传参已经规定了必须是`PokeNotifyEvent`(戳一戳事件)，所以如果传入的不是这个参数默认判定为False)*，然后在函数体里面判断被戳的人是不是bot自己，如果是的话才会返回True。
+检测“戳一戳”事件调用的是Nonebot中的[on_notice](https://v2.nonebot.dev/docs/api/plugin/on#on_notice)(通知事件)。当bot接收到一个`notice`事件时，会先根据`rule`参数当中的规则函数`_check`判断是否为戳一戳事件*(注：因为规则函数传参已经规定了必须是`PokeNotifyEvent`(戳一戳事件)，所以如果传入的不是这个参数默认判定为False，就相当于传入Event后再使用`if(isinstance(event, PokeNotifyEvent))`)*，然后在函数体里面判断被戳的人是不是bot自己，如果是的话才会返回True。
 
 ##### 判断是否在列表里
 
