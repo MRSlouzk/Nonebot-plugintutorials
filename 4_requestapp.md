@@ -97,7 +97,7 @@ async def _(bot: Bot,event: GroupRequestEvent):
             word = re.findall(re.compile('答案：(.*)'), comment)[0]
             uid = event.user_id
             if(str(word) in approve_message_1):
-                logger.info(f'同意{uid}加入群 {gid},验证消息为 “{word}”')
+                logger.info(f'同意{uid}加入群 {gid},验证消息为 “{word}”') #控制台日志输出加群信息!logger类的使用参见																		2.5章(未做)
                 await bot.set_group_add_request(
                     flag=flag,
                     sub_type=sub_type,
