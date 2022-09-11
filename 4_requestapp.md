@@ -44,7 +44,7 @@ async def _(bot: Bot,event: GroupRequestEvent):
 
 可以看到，raw即是通过`event.json`获取到的json数据转化成的变量，类型为字典(Dict)。里面包含很多字段，包括但不仅限于收到申请的时间(time)、收到申请消息的bot的qq(self_id)、群号(group_id)、请求子类型(sub_type)等，具体见[文档](https://github.com/botuniverse/onebot-11/blob/master/event/request.md)。而我们所需要的验证信息就是其中的"comment字段"，可以通过`comment = raw['comment']`提取出来。**特别注意！！！验证消息提取出来后并不单纯是申请人填入文字框中的信息**，而是<u>"问题：XXX 答案：YYY"</u>的形式，其中YYY才是我们真正想要的内容。可以通过`word = re.findall(re.compile('答案：(.*)'), comment)[0]`来提取(正则表达式yyds)，至此我们就拿到了验证信息。
 
-![request_app1](F:\视频\Nonebot\imgs\request_app1.png)
+![request_app1](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/imgs/request_app1.png?raw=true)
 
 而要验证验证信息是否正确也很简单，原理跟第一个实例很像，直接检测列表中是否有这个字符串(验证信息)就行，即使用`in`方法。
 
