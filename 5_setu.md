@@ -27,6 +27,7 @@
 async def get_url():
     url = "https://api.lolicon.app/setu/v2"
     content = requests.post(url).text
+    content = json.loads(content)
     return content
 ```
 上述代码用于向API发送`post`请求，并得到相应的JSON数据，此处使用到了`requests`库(不过开发中的话个人建议是使用`httpx`库，因为可以异步执行)。具体使用规范请参见[随机色图 (lolicon.app)](https://api.lolicon.app/#/setu)。
