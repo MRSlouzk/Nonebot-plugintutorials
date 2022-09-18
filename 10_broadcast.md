@@ -88,6 +88,6 @@ async def bc_send(event: MessageEvent, bot: Bot):
         await bc.finish(MessageSegment.reply(event.message_id) + MessageSegment.text(f"成功发送到 {count} 个群。"))
 ```
 
-在这里我们使用了 [`pause()](https://nb2.baka.icu/docs/tutorial/plugin/matcher-operation#pause) ，可以分开发送，更清晰明了。
+在这里我们使用了 [`pause()`](https://nb2.baka.icu/docs/tutorial/plugin/matcher-operation#pause) ，可以分开发送，更清晰明了。
 
 `permission=SUPERUSER` 即为只有 `SUPERUSER` 才可使用命令。
