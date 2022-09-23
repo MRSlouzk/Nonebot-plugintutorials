@@ -118,3 +118,32 @@ async def num_handle_for(event: MessageEvent):
 ```
 
 #### 代码展示
+
+```python
+from nonebot import on_command
+from nonebot.params import CommandArg
+from nonebot.adapters.onebot.v11 import MessageEvent, Message, MessageSegment
+import random, json, time
+
+from sqlalchemy import null
+
+num=on_command("num")
+@num.handle()
+async def num_handle(event: MessageEvent, args: Message = CommandArg()):
+    num_seed={"user": event.user_id, "seed": event.user_id + int(time.time())}
+    with open("num.json", "wb", encoding="utf-8") as f:
+        f.write(json.dumps(num_seed, ensure_ascii=False, indent=2))
+    await num.reject(MessageSegment.reply(event.message_id) + MessageSegment.text(str(random.randint(1, 1000))))
+
+@num.handle()
+async def num_handle_for(event: MessageEvent):
+    with open("num.json", "r", encoding="utf-8") as f:
+        num_seed_reads=json.loads(f.read())
+    num_seed=num_seed_reads['seed']
+    if event.message.extract_plain_text() is str(num_seed):
+        await num.finish(MessageSegment.reply(event.message_id) + MessageSegment.text("Good, it's right! Goodbye!"))
+    else:
+        await num.reject(MessageSegment.reply(event.message_id) + MessageSegment.text(str(random.randint(1, 1000))))
+```
+
+有个不好的地方，要是别人也用的话种子就会变，可以等待未来我想通了再修改这个，或者等待你的 `Pull Request` 。
