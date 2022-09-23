@@ -11,4 +11,4 @@
 - [8_dailycouple.md](8_dailycouple.md) - *等待完善*
 - [9_welcome.md](9_welcome.md) - *等待完善*
 - [10_broadcast.md](10_broadcast.md) - **已完善**
-- [11_guessnum.md](11_guessnum.md) - *等待完善*
+- [11_guessnum.md](11_guessnum.md) - **已完善**
