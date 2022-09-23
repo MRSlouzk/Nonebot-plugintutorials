@@ -1,7 +1,5 @@
 # 实例1 不要乱戳！
 
-------
-
 难度：★★
 
 作者：[MRSlouzk](https://github.com/MRSlouzk)
