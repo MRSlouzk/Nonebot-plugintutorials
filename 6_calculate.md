@@ -31,7 +31,7 @@ async def add_handle(event: GroupMessageEvent, args: Message = CommandArg()):
     pass
 ```
 
-在此处，我们用 [`on_command`](https://v2.nonebot.dev/docs/api/plugin/on#on_command) 检测命令，然后进行解析。其中指令参数使用 `Message = CommandArg()` 进行解析，最后使用 `args.extract_plain_text().split()` 将参数转换为字符串后再进行分割 (其中分隔符是 ` `) ，成为我们最后拿的指令参数。
+在此处，我们用 [`on_command`](https://v2.nonebot.dev/docs/api/plugin/on#on_command) 检测命令，然后进行解析。其中指令参数使用 `Message = CommandArg()` 进行解析，最后使用 `args.extract_plain_text().split( )` 将参数转换为字符串后再进行分割 (其中分隔符是 ` `) ，成为我们最后拿的指令参数。
 
 例如，我们发送的指令是 `/add 1 2` ，则进行 `args.extract_plain_text()` 后变成 `1 2` ，最后经过 `split()` 后就变成 `["1", "2"]` 。
 
