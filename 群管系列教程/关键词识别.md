@@ -2,7 +2,7 @@
 
 难度：★★★★
 
-作者：ubby
+作者：[ubby](https://github.com/ubby)
 
 ### 功能
 
