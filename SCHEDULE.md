@@ -9,6 +9,6 @@
 - [6_calculate.md](6_calculate.md) - **已完善**
 - [7_pohai.md](7_pohai.md) - **已完善**
 - [8_dailycouple.md](8_dailycouple.md) - *等待完善*
-- [9_welcome.md](9_welcome.md) - *等待完善*
+- [9_welcome.md](9_welcome.md) - **已完善**
 - [10_broadcast.md](10_broadcast.md) - **已完善**
 - [11_guessnum.md](11_guessnum.md) - **已完善**
