@@ -2,7 +2,7 @@
 
 难度：★★★★★
 
-作者：MRSlouzk
+作者：[MRSlouzk](https://github.com/MRSlouzk)
 
 ### 功能
 

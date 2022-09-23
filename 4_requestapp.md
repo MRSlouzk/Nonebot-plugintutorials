@@ -2,7 +2,7 @@
 
 难度：★★★
 
-作者：MRSlouzk
+作者：[MRSlouzk](https://github.com/MRSlouzk)
 
 > [Nonebot2插件编写教程 EP5-处理加群请求](https://www.bilibili.com/video/BV1WW4y1i7As) *([大家的谢谢](https://space.bilibili.com/495468749))*
 

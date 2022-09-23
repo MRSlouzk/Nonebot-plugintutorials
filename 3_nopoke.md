@@ -4,7 +4,7 @@
 
 难度：★★
 
-作者：MRSlouzk
+作者：[MRSlouzk](https://github.com/MRSlouzk)
 
 > [Nonebot2插件编写教程 EP4-不要戳啦](https://www.bilibili.com/video/BV16U4y1r7ze) *([MRSlou1](https://space.bilibili.com/634651362))*
 

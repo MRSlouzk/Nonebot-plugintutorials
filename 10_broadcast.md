@@ -2,8 +2,6 @@
 
 难度：★★
 
-> (这很难吗? 这不难啊!)
-
 作者：[XieXiLin](https://github.com/XieXiLin3)
 
 ### 功能
