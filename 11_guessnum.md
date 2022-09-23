@@ -82,3 +82,39 @@ async def num_handle_guess(event: MessageEvent):
 
 > 代码以最终 `代码展示` 环节的代码为准。
 
+##### 时间戳保存
+
+但是你如果自己先测试的时候发现，`seed` 每次重新响应都会变化，这个时候就需要找方法暂存 `seed` 了。
+
+我在这里使用的是 `json` 储存。
+
+可以直接保存 `seed` 方便处理（下面的代码正是如此）。
+
+```python
+from nonebot import on_command
+from nonebot.params import CommandArg
+from nonebot.adapters.onebot.v11 import MessageEvent, Message, MessageSegment
+import random, json, time
+
+from sqlalchemy import null
+
+num=on_command("num")
+@num.handle()
+async def num_handle(event: MessageEvent, args: Message = CommandArg()):
+    num_seed={"user": event.user_id, "seed": event.user_id + int(time.time())}
+    with open("num.json", "wb", encoding="utf-8") as f:
+        f.write(json.dumps(num_seed, ensure_ascii=False, indent=2))
+    await num.reject(MessageSegment.reply(event.message_id) + MessageSegment.text(str(random.randint(1, 1000))))
+
+@num.handle()
+async def num_handle_for(event: MessageEvent):
+    with open("num.json", "r", encoding="utf-8") as f:
+        num_seed_reads=json.loads(f.read())
+    num_seed=num_seed_reads['seed']
+    if event.message.extract_plain_text() is str(num_seed):
+        await num.finish(MessageSegment.reply(event.message_id) + MessageSegment.text("Good, it's right! Goodbye!"))
+    else:
+        await num.reject(MessageSegment.reply(event.message_id) + MessageSegment.text(str(random.randint(1, 1000))))
+```
+
+#### 代码展示
