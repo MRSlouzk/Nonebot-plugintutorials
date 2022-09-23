@@ -52,3 +52,33 @@ async def num_handle_guess(event: MessageEvent):
         await num.reject(MessageSegment.text("Is Wrong, Try Again"))
 ```
 
+##### 由 QQ 和时间生成随机数
+
+用 `event.user_id` 获取用户的 QQ 号，然后通过时间戳搭配合成一个 `seed` 进行随机数生成。
+
+可以用 `random` 库的 `seed()` 进行生成。
+
+```python
+from nonebot import on_command
+from nonebot.adapters.onebot.v11 import MessageEvent, MessageSegment
+import random
+
+num = on_command("guessnumber", aliases={"guessnum", "gusnum", "gnum", "猜数字"})
+
+@num.handle()
+async def num_handle_start(event: MessageEvent):
+    random.seed(event.user_id)
+    await num.pause(MessageSegment.text("Please Start"))
+
+@num.handle()
+async def num_handle_guess(event: MessageEvent):
+    await num.send(MessageSegment.text("Your Message Is:"))
+    await num.send(event.message)
+    if event.message.extract_plain_text() is random.randint(1, 1000):
+        await num.finish(MessageSegment.text("Exit"))
+    else:
+        await num.reject(MessageSegment.text("Is Wrong, Try Again"))
+```
+
+> 代码以最终 `代码展示` 环节的代码为准。
+
