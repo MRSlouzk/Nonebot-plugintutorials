@@ -4,6 +4,8 @@
 
 作者：MRSlouzk
 
+> [Nonebot2插件编写教程 EP5-处理加群请求](https://www.bilibili.com/video/BV1WW4y1i7As) *([大家的谢谢](https://space.bilibili.com/495468749))*
+
 ### 功能
 
 有人发送入群申请时如果验证信息答案在允许列表里，则同意，否则在群里发送消息提醒。

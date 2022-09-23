@@ -1,4 +1,6 @@
-# NoneBot2插件从零开始的教程  
+# NoneBot2插件从零开始的教程
+
+> [Nonebot2插件编写教程 EP0-序言与一些要求](https://www.bilibili.com/video/BV1cV4y1J7xahttps://www.bilibili.com/video/BV1cV4y1J7xa) *([MRSlou1](https://space.bilibili.com/634651362))*
 
 ### 学习要求  
 

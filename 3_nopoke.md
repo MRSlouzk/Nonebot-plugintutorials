@@ -6,6 +6,8 @@
 
 作者：MRSlouzk
 
+> [Nonebot2插件编写教程 EP4-不要戳啦](https://www.bilibili.com/video/BV16U4y1r7ze) *([MRSlou1](https://space.bilibili.com/634651362))*
+
 ### 功能
 
 当bot被戳一戳时，如果对方在允许列表里，则发送蹭蹭的图片，若不在则@戳的人并且让他不要再戳了。

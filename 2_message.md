@@ -1,5 +1,7 @@
 # 消息的处理
 
+> [Nonebot2插件编写教程 EP1-关键词触发与消息发送](https://www.bilibili.com/video/BV1KN4y1T7JR) *([MRSlou1](https://space.bilibili.com/634651362))*
+
 ### NB平台扮演的角色
 
 以OneBot适配器举例，在机器人后台消息接收时会经过如下流程：首先gocqhttp会从QQ服务器获取消息，然后通过反向WebSocket（如果用的是的话）将消息传输给正在运行的Nonebot后端，后端将消息处理后发出响应再发还给gocqhttp端，最后gocqhttp根据发还的数据向QQ服务器发出消息，这就是消息处理的整个流程。
@@ -123,6 +125,8 @@ async def _():
 到此就讲完了从消息接收、处理到发送的全部流程，大家应该也对插件的运行机制有了一些基本的了解，接下来我们会开始更深入的讨论。
 
 ### 如何在群里@向我@的人？
+
+> [Nonebot2插件编写教程 EP3-如何@回@我的人](https://www.bilibili.com/video/BV1be4y1Q7Eg) *([MRSlou1](https://space.bilibili.com/634651362))*
 
 标题可能看起来有点绕，详细解释一下的话意思就是我(bot)如何在一个QQ群里@在刚刚向我(bot)发送@消息的人。
 
