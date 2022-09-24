@@ -141,11 +141,13 @@ async def num_handle(event: MessageEvent, args: Message = CommandArg()):
 async def num_handle_for(event: MessageEvent):
     with open("num.json", "r", encoding="utf-8") as f:
         num_seed_reads=json.loads(f.read())
-    num_seed=num_seed_reads['seed']
-    if event.message.extract_plain_text() is str(num_seed):
+    random.seed(num_seed_reads['seed'])
+    if event.message.extract_plain_text() is str(random.randint(1, 1000)):
         await num.finish(MessageSegment.reply(event.message_id) + MessageSegment.text("Good, it's right! Goodbye!"))
+    elif int(event.message.extract_plain_text()) > int(random.randint(1, 1000)):
+        await num.reject(MessageSegment.reply(event.message_id) + MessageSegment.text("Too Big")
     else:
-        await num.reject(MessageSegment.reply(event.message_id) + MessageSegment.text(str(random.randint(1, 1000))))
+        await num.reject(MessageSegmeny.reply(event.message_id) + MessageSegment.text("Too Small"))
 ```
 
 有个不好的地方，要是别人也用的话种子就会变，可以等待未来我想通了再修改这个，或者等待你的 `Pull Request` 。
