@@ -71,9 +71,9 @@ async def get_url():
 }
 ```
 
-json数据在python中的处理过程是利用json库把`json`文本转成字典，然后对其进行字典操作。上述响应数据中有很多字段，大家可以选择性的去提取，作为图片发送时的附带消息，在这里只讲如何提取到图片链接。
+json数据在python中的处理过程是利用`json`库把json文本转成字典，然后对其进行字典操作。上述响应数据中有很多字段，大家可以选择性的去提取，作为图片发送时的附带消息，在这里只讲如何提取到图片链接。
 
-> 顺便提一下图片消息(MessageSegment)怎么和普通消息(Message)怎么合并在一个消息中发送：有两个方法。一是使用send_forward_msg方法发送合并消息。二是直接使用"+"拼接两段消息，任何消息段、消息都是可以直接使用"+"进行拼接，如MessageSegment.at(id)+MessageSegment.image(file=)+Message("图片来了!")就是拼接消息，**消息段可以看为消息类型的子类**。
+> 顺便提一下图片消息(MessageSegment)和普通消息(Message)怎么合并在一个消息中发送：有两个方法。一是使用send_forward_msg方法发送合并消息。二是直接使用"+"拼接两段消息，任何消息段、消息都是可以直接使用"+"进行拼接，如MessageSegment.at(id)+MessageSegment.image(file=)+Message("图片来了!")就是拼接消息，**消息段是消息的子类**。
 
 可以看到图片链接位于"data"->**列表第一位**->"urls"->"original"当中，由此我们可以知道提取方式为：\["data"]\[0]\["urls"]["original"]，下面的代码是具体实现
 
