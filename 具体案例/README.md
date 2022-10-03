@@ -26,7 +26,7 @@
 
 ***dailycouple*** 难度：★★★★★|作者：MRSlouzk
 
-**guessnum** 难度：★★★★|作者：XieXiLin
+***guessnum*** 难度：★★★★|作者：XieXiLin
 
 **nopoke** 难度：★★|作者：MRSlouzk
 
