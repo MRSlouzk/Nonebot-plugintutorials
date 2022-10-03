@@ -1,9 +1,15 @@
 # Nonebot-plugintutorials
-Nonebot2的插件编写教程，有些地方可能讲的不好，欢迎大佬们指教！
+本仓库为Nonebot2的插件编写教程，有些地方可能讲的不好，欢迎大佬们指教！
 
-添加教程可直接 `Fork` 然后进行编辑，提交可直接使用 `Pull Request` 进行提交，并请等待审核及建议。
+**理论知识**为写实际插件之前需要知道的一些知识，请根据需求阅读！
 
-初学者请按照序号顺序阅读！
+**具体案例**为具体Nonebot插件编写的详解。
+
+------
+
+添加教程可直接 `Fork` 然后进行编辑，提交请使用 `Pull Request` 进行，并请等待审核及建议。
+
+如果觉得教程哪里有问题或者跑不起来请提交[issues](https://github.com/MRSlouzk/Nonebot-plugintutorials/issues)，我们会来处理的。
 
 交流群：768176998
 

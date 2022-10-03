@@ -1,6 +1,6 @@
 # 实例8 全群广播
 
-难度：★★
+难度：★★★
 
 作者：[XieXiLin](https://github.com/XieXiLin3)
 
