@@ -17,7 +17,7 @@
 >
 > 在 [SCHEDULE.md](SCHEDULE.md) 获取教程完善进度。
 
-### TODO list
+### 🐦 TODO list
 
 - [ ] 如何把文字渲染为图片
 - [ ] 如何使用Nonebot调用GocqHttp的API
