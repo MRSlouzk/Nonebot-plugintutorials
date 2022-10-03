@@ -109,7 +109,7 @@ async def _(bot: Bot,event: GroupRequestEvent):
                     reason=" ",
                 )
             else:
-                await notice_1.finish("有人要加群!但答案不对呀!")
-    await notice_1.finish()
+                await notice.finish("有人要加群!但答案不对呀!")
+    await notice.finish()
 ```
 
