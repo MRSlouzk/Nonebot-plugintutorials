@@ -17,10 +17,22 @@
 >
 > 在 [SCHEDULE.md](SCHEDULE.md) 获取教程完善进度。
 
+------
+
+#### 阅读方法
+
+- 直接在Github上阅读，其自带MarkDown阅读器
+- clone/下载到本地使用诸如Typora、VSCode此类的软件阅读
+
+##### 提示
+
+- 蓝色的字是超链接，可以直接跳转到对应网址
+
 ### 🐦 TODO list
 
 - [ ] 如何把文字渲染为图片
-- [ ] 如何使用Nonebot调用GocqHttp的API
+- [x] 如何使用Nonebot调用GocqHttp的API
+- [ ] 如何生成并发送"合并转发消息"
 - [ ] Nonebug调试工具的使用
 - [ ] httpx的使用
 - [ ] APScheduler插件的使用
