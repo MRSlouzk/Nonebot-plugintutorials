@@ -1,4 +1,15 @@
 # Nonebot-plugintutorials
+<p align="center">
+  <img src="https://img.shields.io/github/stars/MRSlouzk/Nonebot-plugintutorials?style=social" alt="stars">
+  <a href="https://github.com/MRSlouzk/Nonebot-plugintutorials/fork">
+    <img src="https://img.shields.io/github/forks/MRSlouzk/Nonebot-plugintutorials?label=Fork" alt="forks">
+  </a>
+  <img src="https://img.shields.io/badge/%E5%AE%8C%E6%88%90%E5%BA%A6-60%25-yellowgreen">
+  <a href="https://jq.qq.com/?_wv=1027&k=OrAdhOKy">
+    <img src="https://img.shields.io/badge/QQ%E7%BE%A4-768176998-red" alt="qq">
+  </a>
+</p>  
+
 本仓库为Nonebot2的插件编写教程，有些地方可能讲的不好，欢迎大佬们指教！
 
 **理论知识**为写实际插件之前需要知道的一些知识，请根据需求阅读！
