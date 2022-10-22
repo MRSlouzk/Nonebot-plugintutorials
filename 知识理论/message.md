@@ -42,8 +42,8 @@ from nonebot.adapters.onebot.v11 import Message
 | --------------------------- | ------------------------------------------------------------ | ---------- |
 | nonebot                     | on_message，on_notice，on_request，on_keyword，on_command，on_regex | 基础库     |
 | nonebot.config              | Config                                                       | 配置文件库 |
-| nonebot.matcher             | Match                                                        | 事件响应器 |
-| nonebot.params              | Arg，State，CommandArg，RegexMatched                         | 参数库     |
+| nonebot.matcher             | Matcher                                                      | 事件响应器 |
+| nonebot.params              | Arg，State，CommandArgs，RegexMatched                        | 参数库     |
 | nonebot.permission          | SUPERUSER，Permission                                        | 权限库     |
 | nonebot.log                 | logger，default_format                                       | 日志库     |
 | nonebot.adapters.onebot.v11 | Bot，Message，MessageSegment，Event，PRIVATE，GROUP等        | Onebot库   |
@@ -124,7 +124,7 @@ async def _():
 
 `@word.handle()`，这个是函数的"[装饰器](https://v2.nonebot.dev/docs/tutorial/plugin/create-handler)"，说简单点就是给下面定义的函数标明：<u>这个函数是用来处理事件响应器的！</u>，当然这个装饰器的其它用法目前不用了解，我们之后会慢慢讲到，现在只需要知道必须在处理响应器触发的函数前加上这个就行，格式为`@响应器名.handle()`。
 
-接下面的`async def`意思是定义一个[异步(协程)函数](https://www.jianshu.com/p/0957c30e85bf)，Nonebot的事件响应器处理的主函数应当都是异步函数，而子函数(主函数中包含的函数)视情况而定。`async def _()`即定义一个没有任何参数，也没有函数名字的异步函数。一般情况下事件响应器主函数都不需要用到名字，使用`_`代替就行，不过如果为了辨识度高一点的话而命名那随意，之后也会有需要用到函数名字的地方。此外这还是个无参函数，事件响应器处理函数的参数传递(即[依赖注入](https://v2.nonebot.dev/docs/advanced/di/dependency-injection))我们之后再谈，这里的例子只是一个简单的消息触发与回复，并不需要传入任何参数。
+接下面的`async def`意思是定义一个[异步(协程)函数](https://www.jianshu.com/p/0957c30e85bf)，Nonebot的事件响应器处理的主函数应当都是异步函数，而子函数(主函数中包含的函数)视情况而定。`async def _()`即定义一个没有任何参数，也没有函数名字的异步函数。如果懒得给主函数命名，使用`_`代替就行，不过如果为了辨识度高一点的话而命名那随意，之后也会有需要用到函数名字的地方。此外这还是个无参函数，事件响应器处理函数的参数传递(即[依赖注入](https://v2.nonebot.dev/docs/advanced/di/dependency-injection))我们之后再谈，这里的例子只是一个简单的消息触发与回复，并不需要传入任何参数。
 
 `await word.finish(Message("我是bot!"))`，这段代码用来结束名为`word`的事件响应器，同时发送一个消息(Message)<u>"我是bot"</u>。事件响应器中对响应器进行的操作一般都需要加上`await`才能使用，否则会报错，比如此处的`word.finish`。`word.finish`用以执行事件响应器`word`下的`finish`方法，`finish`方法可以结束该事件响应器。`finish`方法可以不传入任何参数，如`word.finish()`，也可以传入**字符串(Str)/消息(Message)/格式化消息模板(MessageTemplate)/消息段(MessageSegment)**这四种类型的参数，在上面的例子中我们传入的是一个消息(Message)类型的参数。
 
