@@ -43,13 +43,13 @@
 
 - [ ] 如何把文字渲染为图片
 - [x] 如何使用Nonebot调用GocqHttp的API
-- [ ] 如何生成并发送"合并转发消息"
+- [x] 如何生成并发送"合并转发消息"
 - [ ] Nonebug调试工具的使用
 - [ ] httpx的使用
 - [ ] APScheduler插件的使用
 - [ ] Permission权限组详解
 - [ ] MessageTemplate的使用
-- [ ] json文件读取详解
+- [x] json文件读取详解
 - [ ] 数据库操作
 - [ ] 群文件传输
 - [ ] Matcher的使用
