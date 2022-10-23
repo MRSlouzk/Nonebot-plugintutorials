@@ -46,7 +46,7 @@
 - [x] 如何生成并发送"合并转发消息"
 - [ ] Nonebug调试工具的使用
 - [ ] httpx的使用
-- [ ] APScheduler插件的使用
+- [x] APScheduler插件的使用
 - [ ] Permission权限组详解
 - [ ] MessageTemplate的使用
 - [x] json文件读取详解
