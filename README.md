@@ -52,6 +52,5 @@
 - [x] json文件读取详解
 - [ ] 数据库操作
 - [ ] 群文件传输
-- [ ] Matcher的使用
-- [ ] T_State的使用
-- [ ] 教程软件版本更新(Gocq以及Nonebot)
+- [ ] Matcher的使用(事件响应器详解)
+- [x] T_State的使用

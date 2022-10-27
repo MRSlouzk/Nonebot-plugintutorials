@@ -24,7 +24,7 @@
 
 **calculate** 难度：★★★|作者：XieXiLin
 
-***dailycouple*** 难度：★★★★★|作者：MRSlouzk
+***dailycouple*** 难度：★★★★|作者：MRSlouzk
 
 ***guessnum*** 难度：★★★★|作者：XieXiLin
 
