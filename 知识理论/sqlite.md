@@ -62,3 +62,8 @@
 ![image](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/imgs/sqlite%E5%88%9B%E5%BB%BA%E8%A1%A82.png)
 
 ### 2-2创建对象（常说的表中的行）
+模拟数据库网站：
+#### 基础sql脚本(关系型数据库中基本通用)
+> insert语句：向一个表中添加行，格式：insert into TABLE values (VALUE1,VALUE2,VALUE3,...VALUEN);  (如果表中有这行会报错哦，下面会教条件语句来防止)
+> select语句：在控制台中输出这个表中的所有行以及他的字段，格式：select * from TABLE_NAME;
+> drop语句：下周写吧
