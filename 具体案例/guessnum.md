@@ -96,8 +96,6 @@ from nonebot.params import CommandArg
 from nonebot.adapters.onebot.v11 import MessageEvent, Message, MessageSegment
 import random, json, time
 
-from sqlalchemy import null
-
 num=on_command("num")
 @num.handle()
 async def num_handle(event: MessageEvent, args: Message = CommandArg()):
@@ -125,7 +123,6 @@ from nonebot.params import CommandArg
 from nonebot.adapters.onebot.v11 import MessageEvent, Message, MessageSegment
 import random, json, time
 
-from sqlalchemy import null
 
 num=on_command("num")
 @num.handle()

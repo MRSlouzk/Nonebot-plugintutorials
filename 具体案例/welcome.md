@@ -49,5 +49,5 @@ def _rule(event: Event):
 join=on_notice(rule=_rule)
 @join.handle()
 async def group_increase_handle(event: GroupIncreaseNoticeEvent):
-    await join.finish(MessageSegment.text("欢迎新成员 ") + MessageSegment.at(event.user_id) + MessageSegment.text(" 加入我们的大家族!"))
+    await join.finish(MessageSegment.text(f'欢迎新成员 {event.user_id} 加入我们的大家族!'))
 ```
