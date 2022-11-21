@@ -64,6 +64,14 @@
 ### 2-2创建对象（常说的表中的行）
 模拟数据库网站：
 #### 基础sql脚本(关系型数据库中基本通用)
-> insert语句：向一个表中添加行，格式：insert into TABLE values (VALUE1,VALUE2,VALUE3,...VALUEN);  (如果表中有这行会报错哦，下面会教条件语句来防止)
+> insert语句：向一个表中添加行，格式：insert into TABLE values (VALUE1,VALUE2,VALUE3,...VALUEN);  (如果表中有这个主键会报错哦，下面会教条件语句来防止)
+> 
 > select语句：在控制台中输出这个表中的所有行以及他的字段，格式：select * from TABLE_NAME;
-> drop语句：下周写吧
+> 
+> drop语句：删除表的一个语句，格式：drop table TABLE_NAME;
+> 
+> create语句：创建表的语句，格式：create table TABLE_NAME(TYPE_1 NAME_1,TYPE 2 NAME_2.........);
+>  
+>  where语句：寻找一个表中符合条件的一项，例如我们要找一个主键ID为3的可以这么写select * from TABLE_NAME where ID=3; (注意sqlite中的等于是一个等于号)
+> 
+> delete语句：删除表中的一项，这时就可以用到where语句了，例如找到ID为3之后我们要删除它，可以这么写delete from TABLE_NAME where ID-3;
