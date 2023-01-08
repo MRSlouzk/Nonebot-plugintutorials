@@ -26,6 +26,8 @@ Json是一种文本格式，常用于数据存储。基本结构为`键: 值`，
 
 > 所有Json文本最外层都必须有{}！
 
+> 此段json代码如放到编辑器当中会报错, 因为一般的json格式不支持用//进行注释
+
 接下来我们就以上面这个Json文本为样板讲解一下Json文件的解析。
 
 在Python当中，如果我们要解析Json文件，就必须先导入Python安装时自带的`json`库，即`import json`，之后才可以进行json操作。
@@ -39,7 +41,7 @@ with open("./new.json", "r", encoding="utf-8") as f:
     content = json.load(f)
 ```
 
-> json.load是直接从文件读取json文本，而json.loads是读取进行了json编码的文本而非本地文件。
+> json.load是直接对读取json文本的指针进行处理，而json.loads是读取进行了json编码的文本变量而非本地文件指针。
 
 > 若Json文件不存在则会报错FileNotFound
 
@@ -54,13 +56,13 @@ with open("./new.json", "w", encoding="utf-8") as f:
     json.dump(data, f, indent=4, ensure_ascii=False)
 ```
 
-上述代码用于向json文件当中写入`data`数据，其中`dump`方法拥有很多参数，这里只讲上面代码中的三个，其他的请自行查阅。
+上述代码用于向json文件当中写入`data`数据，其中`dump`方法拥有很多参数，这里只讲上面代码中的四个，其他的请自行查阅。
 
-`obj`:即上述第一个参数，用于传入需要写入Json文件当中的数据。
+`obj`:即上述第一个参数"data"，用于传入需要写入Json文件当中的数据。
 
-`fp`:即上述第二个参数，用于传入需要写入Json数据的文本指针
+`fp`:即上述第二个参数"f"，用于传入需要写入的Json文件的文本指针
 
-`indent`:传入Json文件换行缩进量，一般为2或者4。
+`indent`:传入Json文件换行缩进量，2或者4比较美观，当然这个因人而异。
 
 `ensure_ascii`:是否允许Ascii码。若为`True`(默认)，则输入的中文全会转化为\uXXXX存储。
 

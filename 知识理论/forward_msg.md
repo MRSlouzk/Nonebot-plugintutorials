@@ -1,6 +1,6 @@
 # 如何发送合并转发消息
 
-> 看本教程前请先看完**gocq-api.md**
+> 看本教程前请先看完[**gocq-api.md**](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E7%9F%A5%E8%AF%86%E7%90%86%E8%AE%BA/gocq-api.md)
 
 本篇教程讲一讲如何进行合并转发消息的发送
 
@@ -17,7 +17,7 @@
 }
 ```
 
-其中`name`为合并转发消息当中发送消息的人显示的名字，`uin`为发送者QQ，`content`为具体消息
+其中`name`为合并转发消息当中发送消息的人显示的名字，`uin`为发送者QQ(用于显示头像)，`content`为具体消息内容
 
 我们可以通过下面的代码实现消息节点的构建
 
@@ -39,7 +39,7 @@ await bot.call_api(
         )
 ```
 
-group_id以及private_id不用多讲，后面的`messages`传入的是消息节点<u>列表</u>
+group_id以及private_id不用多讲，后面的`messages`传入的是消息节点<u>**列表**</u>
 
 ------
 

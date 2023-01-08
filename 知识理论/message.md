@@ -34,7 +34,7 @@ from nonebot import on_keyword
 from nonebot.adapters.onebot.v11 import Message
 ```
 
-这段import代码的是从nonebot库中引入`on_keyword`方法，再从Onebot V11库中引入`Message`方法，这两个方法的具体用法我们之后再谈<u>(至于**方法**这个词具体是什么意思请去看《面向对象编程》，在这你可以简单理解为一个函数就行)</u>，接下来要先聊聊这个import。
+这段import代码的是从nonebot库中引入`on_keyword`方法，再从Onebot V11库中引入`Message`类，这两个东西的具体用法我们之后再谈<u>(至于**方法**这个词具体是什么意思请去看《面向对象编程》，在这你可以简单理解为一个函数就行)</u>，接下来要先聊聊这个import。
 
 如同其他第三方库，Nonebot2中的很多功能都需要通过import导入后才能使用，虽然你也可以通过无脑`from nonebot import *`这种办法来一劳永逸，但不保证这样会不会出一些奇奇怪怪的问题，所以我的建议是需要什么方法就导入什么方法。**那么我怎么知道从哪些库里引入我想要的函数呢？**这里我列举了一些常见库里包含的常见函数，可以供大家参考
 
@@ -128,6 +128,8 @@ async def _():
 
 `await word.finish(Message("我是bot!"))`，这段代码用来结束名为`word`的事件响应器，同时发送一个消息(Message)<u>"我是bot"</u>。事件响应器中对响应器进行的操作一般都需要加上`await`才能使用，否则会报错，比如此处的`word.finish`。`word.finish`用以执行事件响应器`word`下的`finish`方法，`finish`方法可以结束该事件响应器。`finish`方法可以不传入任何参数，如`word.finish()`，也可以传入**字符串(Str)/消息(Message)/格式化消息模板(MessageTemplate)/消息段(MessageSegment)**这四种类型的参数，在上面的例子中我们传入的是一个消息(Message)类型的参数。
 
+> 此处也可以使用`await word.send("我是bot！")`，因为函数执行完后会自动结束响应器
+
 > 上述的代码我们也可以直接使用`await word.finish("我是bot!")`来替代，原因下面会讲到。
 
 到此就讲完了从消息接收、处理到发送的全部流程，此时大家应该对插件的运行机制有了一些基本的了解，接下来我们会开始更深入的讨论。
@@ -144,7 +146,7 @@ async def _():
 
 我们先一步一步来解决这个问题，首先是第一个难题：<u>如何知道TA发送的消息是在@我</u>。这里就需要讲到事件响应器的`rule`参数了,上个例子中的`on_keyword`就有这个参数，现在来详细讲一讲。`rule`翻译过来即”规则“，用于规定触发事件响应器的条件，可以理解为在事件响应器外面套了一个if判断，条件满足时才会触发事件响应器，不满足的时候会直接跳过。说了这么多但`rule`参数的本质其实就是一个bool类型的变量或者返回值类型为bool的函数，当`rule`值为`True`时即可以触发事件响应器，反之为`False`时则不会触发，对，就是这么简单，接下来来讲讲如何使用rule以及如何解决我们上面的问题。
 
-> 或许有人会问在响应器处理函数当中判断是否符合条件和rule的功能是不是一样的?虽然作用上两者一样，但是ruler相当于从源头上"掐断"该事件响应器，而处理函数是从中途阻止。前一种方法有些情况下可以节省一定的性能，虽然也不多就是了。
+> 或许有人会问在响应器处理函数当中判断是否符合条件和rule的功能是不是一样的?虽然作用上两者一样，但是rule相当于从源头上"掐断"该事件响应器，而处理函数是从中途阻止。
 
 ```python
 from nonebot import on_keyword
@@ -296,7 +298,7 @@ async def _(event:GroupMessageEvent):
 
 最后我们要解决的问题是：<u>如何@回去</u>，在此之前我们需要了解一下Onebot的消息类型。上面我们曾提到`word.finish()`方法可以传入四种参数：**字符串(Str)/消息(Message)/格式化消息模板(MessageTemplate)/消息段(MessageSegment)**，其中[格式化消息模板](https://v2.nonebot.dev/docs/api/adapters/index#MessageTemplate)用法比较特殊，暂且避开不谈，只讲剩下三种。
 
-> 字符串(Str)与消息(Message)大部分情况下可以等价，可以替代Message使用，但是有一种特殊情况：消息内包含CQ码的时候只能使用Message，不过个人建议还是统一使用Message来进行消息发送。
+> 字符串(Str)与消息(Message)大部分情况下可以等价，可以替代Message使用，但是有一种特殊情况：消息内包含CQ码的时候只能使用Message，个人建议还是统一使用Message来进行消息发送。
 >
 
 ##### 什么是CQ码？

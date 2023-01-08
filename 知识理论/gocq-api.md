@@ -20,7 +20,22 @@ async def sig(event: GroupMessageEvent, bot: Bot):
     await sign.finish("打卡成功!")
 ```
 
-首先通过依赖注入的方式获取Bot类，之后调用Bot类下的`call_api`方法，即可实现API的调用。以下是源码当中对`call_api`的注释信息
+也可以
+
+```python
+from nonebot import on_command
+from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent
+
+sign = on_command("打卡")
+
+@sign.handle()
+async def sig(event: GroupMessageEvent, bot: Bot):
+    data = {"group_id": event.group_id}
+    await bot.call_api("send_group_sign", data=data)
+    await sign.finish("打卡成功!")
+```
+
+上述代码首先通过依赖注入的方式获取Bot类，之后调用Bot类下的`call_api`方法，即可实现API的调用。以下是源码当中对`call_api`的注释信息
 
 > ```
 > 调用 OneBot 协议 API。
@@ -41,6 +56,6 @@ async def sig(event: GroupMessageEvent, bot: Bot):
 
 **那么该如何传入API所需要的参数呢？**
 
-方法也很简单，直接在`call_api`内使用`所需参数名=所需参数`的方式传入，上例当中的`group_id=event.group_id`就是如此，因为按文档所述`send_group_sign`需要传入`group_id`，即 群号 参数。
+方法也很简单，直接在`call_api`内使用`所需参数名=所需参数`的方式传入，上例当中的`group_id=event.group_id`就是如此，因为按文档所述`send_group_sign`需要传入`group_id`，即 群号 参数。当然了，也可以构造参数字典来进行参数传递，见上述第二个例子。
 
 其它gocq API的使用方法完全可以举一反三，不再赘述。
