@@ -67,7 +67,7 @@ async def send_forward_msg(
     def to_node(msg: Message):
         return {"type": "node", "data": {"name": name, "uin": uin, "content": msg}}
 
-    messages = [to_json(msg) for msg in msgs]
+    messages = [to_node(msg) for msg in msgs]
     is_private = isinstance(event, PrivateMessageEvent)
     if(is_private):
         await bot.call_api(
