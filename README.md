@@ -16,9 +16,9 @@
 
 **具体案例**为具体 `Nonebot2` 插件编写案例的详解。
 
-**阅读顺序的话推荐是知识理论的[debug](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E7%9F%A5%E8%AF%86%E7%90%86%E8%AE%BA/debug.md)->[message](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E7%9F%A5%E8%AF%86%E7%90%86%E8%AE%BA/message.md)->......**
+**阅读顺序的话推荐是知识理论的 [`Debug`](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E7%9F%A5%E8%AF%86%E7%90%86%E8%AE%BA/debug.md)->[message](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E7%9F%A5%E8%AF%86%E7%90%86%E8%AE%BA/message.md)->......**
 
-> 哥们，至少 **2022** 年了，如果图片无法访问，请尽快登机或换机！(翻译:请使用科学上网)
+> 都至少 **2022** 年了，如果图片无法访问，请尽快登机或换机！
 
 ------
 
@@ -30,7 +30,7 @@
 
 > 在 [`VIDEOS.md`](VIDEOS.md) 获取教程对应的视频讲解。 **(本人建议还是以文字教程为主, 感觉视频没做好)
 >
-> 请在正式开始前阅读[入门须知.md](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E5%85%A5%E9%97%A8%E9%A1%BB%E7%9F%A5.md)
+> 请在正式开始前阅读 [入门须知.md](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E5%85%A5%E9%97%A8%E9%A1%BB%E7%9F%A5.md)
 
 ------
 
@@ -56,6 +56,6 @@
 - [ ] 群文件传输
 - [ ] `Matcher` 的使用(事件响应器详解)
 - [x] `T_State` 的使用
-- [ ] 把插件发布到pypi上
+- [ ] 把插件发布到 `PyPI` 上
 
-> 由于本仓库的所有者今年要参加研究生考试, 所以之后基本是没有commit的, 请见谅, 当然如果大家能提交pr那还是会很欢迎的
+> 由于本仓库的所有者今年要参加研究生考试, 所以之后基本是没有 `Commit` 的, 请见谅, 当然如果大家能提交 `Pull Request` 那还是会很欢迎的。
