@@ -58,7 +58,4 @@
 - [x] `T_State` 的使用
 - [ ] 把插件发布到pypi上
 
-### 🐦 假TODO??? LIST
-- [ ] 群内某些好人要求MRS春节女装???? ![image](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/imgs/G2RSN%40SU%7DUOTU3M2%5B~4RB%7DE.png)
-
-### 由于本仓库的所有者今年要参加研究生考试, 所以之后基本是没有commit的, 请见谅, 当然如果大家能提交pr那还是会很欢迎的
+> 由于本仓库的所有者今年要参加研究生考试, 所以之后基本是没有commit的, 请见谅, 当然如果大家能提交pr那还是会很欢迎的
