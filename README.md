@@ -16,8 +16,8 @@
 
 **具体案例**为具体 `Nonebot2` 插件编写案例的详解。
 
-**阅读顺序的话推荐是知识理论的 [`Debug`](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E7%9F%A5%E8%AF%86%E7%90%86%E8%AE%BA/debug.md)->[message](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E7%9F%A5%E8%AF%86%E7%90%86%E8%AE%BA/message.md)->......**
-
+**阅读顺序的话推荐是知识理论的 [`Debug`](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E7%9F%A5%E8%AF%86%E7%90%86%E8%AE%BA/debug.md) -> [`Message`](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E7%9F%A5%E8%AF%86%E7%90%86%E8%AE%BA/message.md) -> ......**
+ 
 > 都至少 **2022** 年了，如果图片无法访问，请尽快登机或换机！
 
 ------
