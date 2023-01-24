@@ -62,7 +62,10 @@
 ![image](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/imgs/sqlite%E5%88%9B%E5%BB%BA%E8%A1%A82.png)
 
 ### 2-2创建对象（常说的表中的行）
-模拟数据库网站：
+模拟数据库网站：http://sqlfiddle.com/
+在左边写创建数据库等语句
+然后点击下边的build进行初始胡
+右边是写操作语句，比如insert，select这些
 #### 基础sql脚本(关系型数据库中基本通用)
 > insert语句：向一个表中添加行，格式：insert into TABLE values (VALUE1,VALUE2,VALUE3,...VALUEN);  (如果表中有这个主键会报错哦，下面会教条件语句来防止)
 > 
@@ -70,8 +73,15 @@
 > 
 > drop语句：删除表的一个语句，格式：drop table TABLE_NAME;
 > 
-> create语句：创建表的语句，格式：create table TABLE_NAME(TYPE_1 NAME_1,TYPE 2 NAME_2.........);
+> create语句：创建表的语句，格式：create table TABLE_NAME(NAME_1 TYPE_1,NAME_2 TYPE 2.........);
 >  
->  where语句：寻找一个表中符合条件的一项，例如我们要找一个主键ID为3的可以这么写select * from TABLE_NAME where ID=3; (注意sqlite中的等于是一个等于号)
+> where语句：寻找一个表中符合条件的一项，例如我们要找一个主键ID为3的可以这么写select * from TABLE_NAME where ID=3; (注意sqlite中的等于是一个等于号)
 > 
-> delete语句：删除表中的一项，这时就可以用到where语句了，例如找到ID为3之后我们要删除它，可以这么写delete from TABLE_NAME where ID-3;
+> delete语句：删除表中的一项，这时就可以用到where语句了，例如找到ID为3之后我们要删除它，可以这么写delete from TABLE_NAME where ID=3;
+>
+> and连接词，需要两边都为true，假如在一个student表中需要查询name是王五，id是1的那行，我们可以使用select * from student where name="王五" and id = 1;
+>
+> or连接词：需要两边任意一个为true，语法与and连接词一样
+>
+> order by：？？？等待会再画
+### 2-3使用python的驱动库进行对数据库的操作
