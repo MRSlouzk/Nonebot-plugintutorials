@@ -5,7 +5,7 @@
 - [2_message.md](2_message.md#如何在群里向我的人) - [Nonebot2插件编写教程 EP3-如何@回@我的人](https://www.bilibili.com/video/BV1be4y1Q7Eg) *([MRSlou1](https://space.bilibili.com/634651362))*
 - [2.5_debug.md](2.5_debug.md) - **Waiting To Be Made**
 - [3_nopoke.md](3_nopoke.md) - [Nonebot2插件编写教程 EP4-不要戳啦](https://www.bilibili.com/video/BV16U4y1r7ze) *([MRSlou1](https://space.bilibili.com/634651362))*
-- [4_requestapp.md](4_requestapp.md) - [Nonebot2插件编写教程 EP5-处理加群请求](https://www.bilibili.com/video/BV1WW4y1i7As) *([大家的谢谢](https://space.bilibili.com/495468749))*
+- [4_requestapp.md](4_requestapp.md) - **Waiting To Be Made**
 - [5_setu.md](5_setu.md) - **Waiting To Be Made** ***(不一定会做, 具体看想法)***
 - [6_calculate.md](6_calculate.md) - **Waiting To Be Made**
 - [7_pohai.md](7_pohai.md) - **Waiting To Be Made**
