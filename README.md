@@ -18,7 +18,7 @@
 
 **阅读顺序的话推荐是知识理论的 [`Debug`](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E7%9F%A5%E8%AF%86%E7%90%86%E8%AE%BA/debug.md) -> [`Message`](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E7%9F%A5%E8%AF%86%E7%90%86%E8%AE%BA/message.md) -> ......**
  
-> 都至少 **2022** 年了，如果图片无法访问，请尽快登机或换机！
+> 都 **2023** 年了，如果图片无法访问，请尽快登机或换机！
 
 ------
 
@@ -28,7 +28,7 @@
 
 交流(吹水)群：`768176998`
 
-> 在 [`VIDEOS.md`](VIDEOS.md) 获取教程对应的视频讲解。 **(本人建议还是以文字教程为主, 感觉视频没做好)
+> 在 [`VIDEOS.md`](VIDEOS.md) 获取教程对应的视频讲解。 **(本人建议还是以文字教程为主, 感觉视频没做好)**
 >
 > 请在正式开始前阅读 [入门须知.md](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E5%85%A5%E9%97%A8%E9%A1%BB%E7%9F%A5.md)
 
