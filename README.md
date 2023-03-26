@@ -11,12 +11,6 @@
 </p>  
 
 本仓库为 `Nonebot2` 的插件编写教程，有些地方可能讲的不好，欢迎大佬们指教！
-
-**理论知识**为写实际插件之前需要知道的一些知识，请根据需求阅读！
-
-**具体案例**为具体 `Nonebot2` 插件编写案例的详解。
-
-**阅读顺序的话推荐是知识理论的 [`Debug`](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E7%9F%A5%E8%AF%86%E7%90%86%E8%AE%BA/debug.md) -> [`Message`](https://github.com/MRSlouzk/Nonebot-plugintutorials/blob/main/%E7%9F%A5%E8%AF%86%E7%90%86%E8%AE%BA/message.md) -> ......**
  
 > 都 **2023** 年了，如果图片无法访问，请尽快登机或换机！
 
@@ -41,6 +35,8 @@
 
 > 蓝色的字是超链接，可以直接跳转到对应网址
 
+> 由于本仓库的所有者今年要参加研究生考试, 所以之后基本是没有 `Commit` 的, 请见谅, 当然如果大家能提交 `Pull Request` 那还是会很欢迎的。
+
 ### 🐦 TODO LIST
 
 - [ ] 如何把文字渲染为图片
@@ -58,4 +54,6 @@
 - [x] `T_State` 的使用
 - [ ] 把插件发布到 `PyPI` 上
 
-> 由于本仓库的所有者今年要参加研究生考试, 所以之后基本是没有 `Commit` 的, 请见谅, 当然如果大家能提交 `Pull Request` 那还是会很欢迎的。
+### 🕒 更新日志
+2022.7.9 创建仓库  
+2023.3.26 更新仓库排版
