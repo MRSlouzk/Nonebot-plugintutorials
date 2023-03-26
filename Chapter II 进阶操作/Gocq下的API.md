@@ -2,6 +2,8 @@
 
 本节我们讲述如何在Nonebot2的插件中调用gocqhttp的API
 
+> 本教程对应官方文档：[调用平台API](https://v2.nonebot.dev/docs/appendices/api-calling#%E8%B0%83%E7%94%A8%E5%B9%B3%E5%8F%B0-api)
+
 ### [Gocq-Api](https://docs.go-cqhttp.org/api/#%E5%9F%BA%E7%A1%80%E4%BC%A0%E8%BE%93)
 
 Gocq当中有70+种API，其中有一部分已经被Onebot协议所实现，例如`send_msg`、`send_group_msg`等，可以直接通过`bot.`来调用这些API。全部已实现API参看[Onebot文档](https://github.com/botuniverse/onebot-11/blob/master/api/public.md)。不过本教程并不是讲如何通过Onebot的实现去调用gocq的api，而是直接访问。

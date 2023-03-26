@@ -8,7 +8,7 @@
 
 > 当然，要实现参数的上下文传递还有很多别的方法，不过这里只是为了讲解state的一个用途所举的例子
 
-> 重要：Nonebot-2.0.0-rc1对State进行了一些[更改](https://github.com/nonebot/nonebot2/pull/1160)，如果在此版本及以上无法实践本教程代码，请及时提交issues，谢谢！
+> 重要：Nonebot-2.0.0-rc1对State进行了一些[更改](https://github.com/nonebot/nonebot2/pull/1160)，旧版的State不再适用
 
 ### 一个案例
 
