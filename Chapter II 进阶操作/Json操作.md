@@ -1,74 +1,74 @@
-# JSON文件的读写
+# JSON 文件的读写
 
-*其实这应该算Python基础知识版块的内容，不过因为这个东西在Nonebot插件编写过程中也经常使用(数据库?数据库哪有Json香(笑))，而且也确实不是每个人都学过，所以特地开了篇教程**简单**<u>(详细教程请到别的地方去看!)</u>讲一讲JSON读写。*
+_其实这应该算 Python 基础知识版块的内容，不过因为这个东西在 Nonebot 插件编写过程中也经常使用(数据库?数据库哪有 Json 香(笑))，而且也确实不是每个人都学过，所以特地开了篇教程**简单**<u>(详细教程请到别的地方去看!)</u>讲一讲 JSON 读写。_
 
-Json是一种文本格式，常用于数据存储。基本结构为`键: 值`，键仅可以为**字符串**，而值可以是**字符串**，**列表**(使用[]包裹)，**数字**，或者另一些**键值对**，下面这段代码很好的展示了不同形式的Json结构
+Json 是一种文本格式，常用于数据存储。基本结构为`键: 值`，键仅可以为**字符串**，而值可以是**字符串**，**列表**(使用[]包裹)，**数字**，或者另一些**键值对**，下面这段代码很好的展示了不同形式的 Json 结构
 
 ```json
 {
-    "max": 1,
-    "1": {
-        "user": 3237231778,
-        "type": "image"
+  "max": 1,
+  "1": {
+    "user": 3237231778,
+    "type": "image"
+  },
+  "a": [
+    1,
+    {
+      "a": 2 //2
     },
-    "a": [
-        1,
-        {
-            "a": 2 //2
-        },
-        "b"
-    ],
-    "c": {
-        "d": 333 //1
-    }
+    "b"
+  ],
+  "c": {
+    "d": 333 //1
+  }
 }
 ```
 
-> 所有Json文本最外层都必须有{}！
+> 所有 Json 文本最外层都必须有{}！
 
-> 此段json代码如放到编辑器当中会报错, 因为一般的json格式不支持用//进行注释
+> 此段 json 代码如放到编辑器当中会报错, 因为一般的 json 格式不支持用//进行注释
 
-接下来我们就以上面这个Json文本为样板讲解一下Json文件的解析。
+接下来我们就以上面这个 Json 文本为样板讲解一下 Json 文件的解析。
 
-在Python当中，如果我们要解析Json文件，就必须先导入Python安装时自带的`json`库，即`import json`，之后才可以进行json操作。
+在 Python 当中，如果我们要解析 Json 文件，就必须先导入 Python 安装时自带的`json`库，即`import json`，之后才可以进行 json 操作。
 
-------
+---
 
-下面的代码告诉了我们如何读入一个json文件
+下面的代码告诉了我们如何读入一个 json 文件
 
 ```python
 with open("./new.json", "r", encoding="utf-8") as f:
     content = json.load(f)
 ```
 
-> json.load是直接对读取json文本的指针进行处理，而json.loads是读取进行了json编码的文本变量而非本地文件指针。
+> json.load 是直接对读取 json 文本的指针进行处理，而 json.loads 是读取进行了 json 编码的文本变量而非本地文件指针。
 
-> 若Json文件不存在则会报错FileNotFound
+> 若 Json 文件不存在则会报错 FileNotFound
 
-上述代码即从当前目录下的"new.json"文件当中读入json数据，随后`json.load`方法会将读入的json文本**转换成Python当中的[字典](https://www.w3school.com.cn/python/python_dictionaries.asp)**存入content变量当中，所以之后讲解的内容本质其实都是Python字典的操作。
+上述代码即从当前目录下的"new.json"文件当中读入 json 数据，随后`json.load`方法会将读入的 json 文本**转换成 Python 当中的[字典](https://www.w3school.com.cn/python/python_dictionaries.asp)**存入 content 变量当中，所以之后讲解的内容本质其实都是 Python 字典的操作。
 
-例如我们现在想要在上面的json文本当中提取最下面的"d"的值**(代码中1号位置)**，可以这么操作`val=content["c"]["d"]`，这样就可以取到`d`的值，也就是`333`了。除此之外上例我们还可以看到[]包裹的列表，如果我们想取到其中的"a"**(代码中2号位置)**的值，应该这么写：`val=content["a"][1]["a"]`，此时val的值为`2`。
+例如我们现在想要在上面的 json 文本当中提取最下面的"d"的值**(代码中 1 号位置)**，可以这么操作`val=content["c"]["d"]`，这样就可以取到`d`的值，也就是`333`了。除此之外上例我们还可以看到[]包裹的列表，如果我们想取到其中的"a"**(代码中 2 号位置)**的值，应该这么写：`val=content["a"][1]["a"]`，此时 val 的值为`2`。
 
-------
+---
 
 ```python
 with open("./new.json", "w", encoding="utf-8") as f:
     json.dump(data, f, indent=4, ensure_ascii=False)
 ```
 
-上述代码用于向json文件当中写入`data`数据，其中`dump`方法拥有很多参数，这里只讲上面代码中的四个，其他的请自行查阅。
+上述代码用于向 json 文件当中写入`data`数据，其中`dump`方法拥有很多参数，这里只讲上面代码中的四个，其他的请自行查阅。
 
-`obj`:即上述第一个参数"data"，用于传入需要写入Json文件当中的数据。
+`obj`:即上述第一个参数"data"，用于传入需要写入 Json 文件当中的数据。
 
-`fp`:即上述第二个参数"f"，用于传入需要写入的Json文件的文本指针
+`fp`:即上述第二个参数"f"，用于传入需要写入的 Json 文件的文本指针
 
-`indent`:传入Json文件换行缩进量，2或者4比较美观，当然这个因人而异。
+`indent`:传入 Json 文件换行缩进量，2 或者 4 比较美观，当然这个因人而异。
 
-`ensure_ascii`:是否允许Ascii码。若为`True`(默认)，则输入的中文全会转化为\uXXXX存储。
+`ensure_ascii`:是否允许 Ascii 码。若为`True`(默认)，则输入的中文全会转化为\uXXXX 存储。
 
-### 可供参考的一个JsonUtils案例
+### 可供参考的一个 JsonUtils 案例
 
-*(小声:代码写的可能比较烂，轻喷~)*
+_(小声:代码写的可能比较烂，轻喷~)_
 
 ```python
 import json, os
@@ -106,7 +106,7 @@ class JsonUtils():
                 else:
                     f.write("")
         return True
-                      
+
     @classmethod
     async def read(cls, filename: str, *default) -> Tuple[dict, bool]:
         """
@@ -129,10 +129,10 @@ class JsonUtils():
     async def write(cls, filename: str, data: dict) -> None:
         """
         写入Json数据
-        
+
         :param filename: 文件路径
         :param data: 写入的数据
-        :return: 
+        :return:
         """
         file_url = cls.relative_url + filename
         JsonUtils.__preBuildFile(file_url)
@@ -140,4 +140,3 @@ class JsonUtils():
             content = json.dumps(data, indent=4, ensure_ascii=False)
             f.write(content)
 ```
-
