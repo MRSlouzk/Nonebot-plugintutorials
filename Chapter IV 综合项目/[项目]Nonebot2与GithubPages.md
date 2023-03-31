@@ -14,10 +14,10 @@
 
 ### 2.注意事项
 
-- 除了 Github Page 外, Gitee Page 与 Coding 都可以部署网页, 如果有自己的服务器也可以扔在服务器上(需要备案)。
+- 除了 Github Page 外, Gitee Page 与 Coding 都可以部署网页, 如果有自己的服务器也可以扔在服务器上(国内的需要备案)。
 - Github Page 有一定限制, 如只能部署静态网页, 一段时间内的部署次数限制以及仓库大小限制
 - 如果不想买域名可以用 github.io 解析, 具体方法见"步骤"
-- 因为网页是托管到了 Github 的服务器, 所以国内有些区域访问速度会很慢(甚至直接 TIMED_OUT), 解决方法见"步骤"
+- 因为网页是托管在 Github 的服务器, 所以国内有些区域访问速度会很慢(甚至直接 TIMED_OUT), 解决方法见"步骤"
 
 ### 3.步骤
 
@@ -35,13 +35,12 @@
 
 接下来开始填写网站的一些基本信息。打开仓库根目录(后文均用`./`表示)当中的`Makefile`文件, 可以看到有很多的参数。首先我们找到`PAGELANG`, 将后面的 en 改成 zh, 这步是将英文界面模式换成中文, 之后的`TITLE`即网页标题(显示在标签栏的文字), `DESC`即网页的概述, `FOOTER`是网页的脚注, 剩下的参数则可以不用管, 修改完成后点击绿色按钮的`Commit`即可。
 
-下一步是部署 Github Actions 来自动`make`和`deploy`网页, 其中`deploy`已经有了, 我们需要对网站进行 makr 操作才能正常使用  
+下一步是部署 Github Actions 来自动`make`和`deploy`网页, 其中`deploy`已经有了, 我们需要对网站进行 make 操作才能正常使用  
 首先打开仓库的"Settings->Actions->General", 找到"Workflow permissions", 选择`Read and write permissions`, 之后点击下面的"Save"。
 
 > 注:下面的步骤适用于不方便将代码`clone`到本地并安装 make 环境的人, 有能力的完全可以克隆下来`make`后再提交上去(Memebox 仓库也是这么写的)
 
-打开你的 Profile 页面, 选择"Developer Settings", 点击选取"Personal access tokens (classic) -> fine-grained personal access token", 填入对应 token 名, 过期日期。"Repository access"中选取"Only select repositories", 然后选择对应仓库。点开"Repository permissions", 将`Actions`,`Contents`,`Deployments`,`Pages`,`Pull requests`,`Webhooks 
-`,`Workflows`, 权限改为"Read and write", `Metadata`与`Secrets`为"Read-only", 然后"Generate token", 复制"github*pat*..."。再打开仓库的"Settings->Secrets->Actions", 点右上角新建一个 secrets, 将上面的 token 复制进去保存即可, 命名为"TOKEN"。
+打开你的 Profile 页面, 选择"Developer Settings", 点击选取"Personal access tokens (classic) -> fine-grained personal access token", 填入对应 token 名, 过期日期。"Repository access"中选取"Only select repositories", 然后选择对应仓库。点开"Repository permissions", 将`Actions`,`Contents`,`Deployments`,`Pages`,`Pull requests`,`Webhooks`,`Workflows` 权限改为"Read and write", `Metadata`与`Secrets`为"Read-only", 然后"Generate token", 复制"github*pat*..."。再打开仓库的"Settings->Secrets->Actions", 点右上角新建一个 secrets, 将上面的 token 复制进去保存即可, 命名为"TOKEN"。
 
 <!-- 然后打开仓库的"Settings->Pages"页面, 将"Build and deployment"标签下面的"Source"改为`Github Actions`, 之后选择`Static HTML`并点击下面的`Configure`按钮, 之后会跳转到修改Github Actions文件的页面, 请将内容改成下面的代码 -->
 
@@ -80,6 +79,9 @@ jobs:
 > 到此网站的 make 工作就结束了, 接下来就是上传图片与部署了。
 
 打开"meme"文件夹, 点击右上角 Upload files, 上传图片并进行提交, 即可成功将图片加入网站当中(WorkFlow 会自动生成配置文件并提交代码)。"text"文件夹则可以上传 Markdown 文件来发布文章。  
+
+> 注意：memebox仓库存在一些bug，如果你是使用自己域名部署的仓库，请将 `static/scripts/index.js` 文件当中第五行域名匹配部分的域名改为自己的域名，不然无法正常部署。
+
 如果你使用的是 github.io 域名, workflow 运行结束后你就可以看到有图的网站了~(PS:可能要等几分钟才能生效, 如果没生效请尝试清除浏览器缓存后重试)。如果不是 github.io 请参见"域名的购买与解析"部分
 
 > 如何解决 Github 访问慢的问题？  
@@ -120,7 +122,7 @@ jobs:
 ### 2.注意事项
 
 - 请勿向他人泄露你的 Github Token(如公共仓库/论坛/截图等当中, 发送代码片段时请注意打上马赛克)
-- 第三方 Github 库均是 Github 官方提供的, 讲解时不使用主要是可以稍微弄清一下里面的原理, 如想使用可以自行阅读文档并修改代码
+- 讲解时不使用第三方 Github 库主要是可以稍微弄清一下里面的原理, 如想使用可以自行阅读文档并修改代码
 - Nonebot 的安装与使用这里省略, 具体的过程请在 B 站搜"Well404"看他的视频
 
 ### 3.步骤
@@ -140,7 +142,7 @@ import requests as rq
 from .github_opera import GithubOperation
 
 def user_check(event: GroupMessageEvent):
-    return event.user_id == 3237231778
+    return event.user_id == {$ ? $} # 此处填上你的QQ号
 
 add_pic = on_command("上传meme图", rule=user_check)
 @add_pic.handle()
