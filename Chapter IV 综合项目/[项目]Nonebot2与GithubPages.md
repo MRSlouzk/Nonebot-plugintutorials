@@ -179,7 +179,7 @@ async def _(state: T_State, event: GroupMessageEvent, arg: str = ArgStr("ans")):
     out = os.system(f"ffmpeg -i temp.png temp.webp")
     logger.info(out)
     img_cot = open(f"temp.webp", "rb").read()
-    os.remove(temp.webp)
+    os.remove("temp.webp")
 
     g = GithubOperation()
     res = await g.pic_commit(name, "Auto Commit", img_cot, ".webp")
