@@ -174,15 +174,12 @@ async def _(state: T_State, event: GroupMessageEvent, arg: str = ArgStr("ans")):
         f.write(img_cot)
     await add_pic.send(f"读取图片成功, 正在转换格式以及推送至仓库")
 
-    import os, platform
+    import os
     from nonebot.log import logger
     out = os.system(f"ffmpeg -i temp.png temp.webp")
     logger.info(out)
     img_cot = open(f"temp.webp", "rb").read()
-    if(platform.system() == "Windows"):
-        os.system("rm temp.webp")
-    else:
-        os.system("rm -rf temp.webp")
+    os.remove(temp.webp)
 
     g = GithubOperation()
     res = await g.pic_commit(name, "Auto Commit", img_cot, ".webp")
